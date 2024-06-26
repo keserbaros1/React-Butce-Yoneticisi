@@ -3,7 +3,7 @@ import "./App.css";
 
 import Yenikayit from "./components/Yenikayit";
 import Giris from "./components/Giris";
-import HesapHareketleri from './components/HesapHareketleri';
+import VeriHareketleri from './components/VeriHareketleri';
 
 
 function App() {
@@ -79,7 +79,7 @@ console.log(yeniListe)
       </div> 
 
       <div>
-        <HesapHareketleri items={yeniListe}></HesapHareketleri>
+        <VeriHareketleri props={yeniListe}></VeriHareketleri>
       </div>
 
 
