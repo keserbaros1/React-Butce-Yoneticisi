@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import "./App.css";
-import YeniIslem from "./components/YeniIslem";
+import Yenikayit from "./components/Yenikayit";
 
 
 function App() {
 
   return (
       <div>
-      <YeniIslem IslenenVeriKayit></YeniIslem>
+      <Yenikayit IslenenVeriKayit></Yenikayit>
       </div>
   );
   
