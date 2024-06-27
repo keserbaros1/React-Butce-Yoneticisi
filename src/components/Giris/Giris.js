@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import KullaniciDogrula from "./Kullanicilar";
-import { message, Modal, Input, Button } from 'antd';
+import { message, Modal, Input, Button, Form } from 'antd';
 
 function Giris() {
 
@@ -9,6 +9,7 @@ function Giris() {
   const [id, idAyarla] = useState();
   const [sifre, sifreAyarla] = useState();
   const [sifreDogrula, sifreDogrulaAyarla] = useState();
+  const [Kullanici, KullaniciAyarla] = useState("");
 
   const panelDegis = () => {    // Panel'in açılıp kapanmasını sağlayan fonksiyon
     panelGosterAyarla(!panelGoster);
@@ -30,13 +31,17 @@ function Giris() {
     sifreDogrulaAyarla(event.target.value);
   };
 
+    const cikisYap = () => {
+      KullaniciAyarla("");
+      panelGosterAyarla(true);
+    };
 
 
 
   const girisForm = (event) => {
-    event.preventDefault();
     if (KullaniciDogrula(id, sifre)){
       message.success('Giriş başarılı');
+      KullaniciAyarla(id);
       panelDegis();
     } else {
       message.error('Kullanıcı adı veya şifre hatalı');
@@ -45,7 +50,6 @@ function Giris() {
 
 
     const kayitForm = (event) => {
-      event.preventDefault();
       // if (sifre !== sifreDogrula) {
       //   message.error('Şifreler uyuşmuyor');
       //   return;
@@ -60,6 +64,10 @@ function Giris() {
 
   return (
     <div>
+      <div>
+        <label>{Kullanici}</label>
+        <Button onClick={cikisYap}>Çıkış Yap</Button>
+      </div>
       <Modal
         visible={panelGoster}
         footer={null}
@@ -68,7 +76,7 @@ function Giris() {
         closable={false}
       >
         {girisEkrani ? (
-        <form onSubmit={girisForm}>
+        <Form onFinish={girisForm}>
           <div>
             <div>
               <label>Kullanıcı Adı</label>
@@ -98,7 +106,7 @@ function Giris() {
             <Button onClick={girisDegis}>Kayıt Ol</Button>
             </div>  
           </div>
-          </form>
+          </Form>
         ) : (
           <div>
             <div>
@@ -136,7 +144,6 @@ function Giris() {
 
             <div style={{ marginTop: '20px' }}>
             <Button onClick={kayitForm} type="primary">Kayıt Ol</Button>
-            <Button onClick={panelDegis}>Kapat</Button>
             </div>
           </div>
         )}

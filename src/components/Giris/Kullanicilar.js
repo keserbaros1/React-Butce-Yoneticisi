@@ -10,6 +10,10 @@ function Kullanicilar(id, sifre) {
     {
         id: "deneme3",
         sifre: "123456"
+    },
+    {
+        id: "ECompany",
+        sifre: "N6srZ6!dibdWe!S"
     }
     ];
 
