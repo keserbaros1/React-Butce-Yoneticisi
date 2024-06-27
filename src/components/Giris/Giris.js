@@ -1,6 +1,9 @@
 import React, { useState } from "react";
-import KullaniciDogrula from "./Kullanicilar";
-import { message, Modal, Input, Button, Form } from 'antd';
+// import KullaniciDogrula from "./Kullanicilar";
+import {KullaniciDogrula, KullaniciEkle} from "./Kullanicilar";
+import { message, Modal, Input, Button, Form, Breadcrumb } from 'antd';
+import {UserOutlined, } from '@ant-design/icons';
+
 
 function Giris() {
 
@@ -39,6 +42,9 @@ function Giris() {
 
 
   const girisForm = (event) => {
+    console.log("girisForm fonksiyonu çalıştı")
+    console.log(id, sifre)
+
     if (KullaniciDogrula(id, sifre)){
       message.success('Giriş başarılı');
       KullaniciAyarla(id);
@@ -50,31 +56,59 @@ function Giris() {
 
 
     const kayitForm = (event) => {
-      // if (sifre !== sifreDogrula) {
-      //   message.error('Şifreler uyuşmuyor');
-      //   return;
-      // }
-      // KullaniciEkle(id, sifre);
-      // message.success('Kayıt başarılı');
-      // girisDegis();
+    // message.success('Kayıt başarılı');
+    // girisDegis();
+    console.log("Kayit Form çalıştı")
+
+      if (sifre !== sifreDogrula) {
+        message.error('Şifreler uyuşmuyor');
+        return;
+      }
+
+      else if (KullaniciEkle(id, sifre)) {
+      message.success('Kayıt başarılı');
+      girisDegis();
+      } 
+      
+      else {
+        message.error('Kullanıcı adı zaten var');
+      }
 
   };
 
 
-
   return (
+
     <div>
-      <div>
-        <label>{Kullanici}</label>
-        <Button onClick={cikisYap}>Çıkış Yap</Button>
-      </div>
+
+  <Breadcrumb         // Sidebar'da kullanıcı adını gösteren kısım
+    items={[
+      {
+        title: (
+          <>
+            <a>
+              <UserOutlined />
+              <strong >
+                {Kullanici}
+              </strong>
+            </a>
+          </>
+        ),
+        onClick: cikisYap,
+      },
+    ]}
+    />
+
+
+
+      
       <Modal
         visible={panelGoster}
         footer={null}
         centered
         maskClosable={false}
         closable={false}
-      >
+        >
         {girisEkrani ? (
         <Form onFinish={girisForm}>
           <div>
@@ -101,7 +135,7 @@ function Giris() {
             </div>
 
 
-            <div style={{ marginTop: '20px' }}>
+            <div>
             <Button  type="primary" htmlType="submit">Giriş Yap</Button>
             <Button onClick={girisDegis}>Kayıt Ol</Button>
             </div>  
@@ -142,7 +176,7 @@ function Giris() {
               />
             </div>
 
-            <div style={{ marginTop: '20px' }}>
+            <div>
             <Button onClick={kayitForm} type="primary">Kayıt Ol</Button>
             </div>
           </div>
