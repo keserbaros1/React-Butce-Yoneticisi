@@ -57,182 +57,93 @@ function Giris() {
   };
 
 
-  
+
   return (
-
     <div>
-      <button onClick={panelDegis}>Giriş Yap</button>
+      <Modal
+        visible={panelGoster}
+        footer={null}
+        centered
+        maskClosable={false}
+        closable={false}
+      >
+        {girisEkrani ? (
+        <form onSubmit={girisForm}>
+          <div>
+            <div>
+              <label>Kullanıcı Adı</label>
+              <Input
+                name="firstName"
+                type="text"
+                value={id}
+                required
+                onChange={idDuzenle}
+              />
+            </div>
 
-      {panelGoster && (       // Panel açıldığında gösterilecek içerik
-        <div style={{ position: "fixed", top: "50%", left: "50%", transform: "translate(-50%, -50%)", backgroundColor: "white", padding: "20px", zIndex: 1000 }}>
-          
-            {girisEkrani && (  // Giriş yapma ekranında gösterilecek içerik
-              <div>
-                <div>
-                  <label>Kullanıcı Adı</label>
-                  <input
-                  name="firstName" 
-                  type="text"
-                  value={id}
-                  required
-                  onChange={idDuzenle}
-                  ></input>
-                </div>
-
-                <div>
-                  <label>Şifre</label>
-                  <input
-                  name="password" 
-                  type="password"
-                  value={sifre}
-                  required
-                  onChange={sifreDuzenle}
-                  ></input>
-                </div>
-
-                <button onClick={girisForm}>Giriş Yap</button>
-                <button onClick={girisDegis}>Kayit ol</button>
-                <button onClick={panelDegis}>Kapat</button>
-
+            <div>
+              <label>Şifre</label>
+              <Input
+                name="password"
+                type="password"
+                value={sifre}
+                required
+                onChange={sifreDuzenle}
+              />
+            </div>
 
 
-              </div>
-            )}
+            <div style={{ marginTop: '20px' }}>
+            <Button  type="primary" htmlType="submit">Giriş Yap</Button>
+            <Button onClick={girisDegis}>Kayıt Ol</Button>
+            </div>  
+          </div>
+          </form>
+        ) : (
+          <div>
+            <div>
+              <label>Kullanıcı Adı</label>
+              <Input
+                name="firstName"
+                type="text"
+                value={id}
+                required
+                onChange={idDuzenle}
+              />
+            </div>
 
-            {!girisEkrani && (  // Kayıt olma ekranında gösterilecek içerik
-              <div>
-                <div>
-                  <label>Kullanıcı Adı</label>
-                  <input
-                  name="firstName" 
-                  type="text"
-                  value={id}
-                  required
-                  onChange={idDuzenle}
-                  ></input>
-                </div>
+            <div>
+              <label>Şifre</label>
+              <Input
+                name="password"
+                type="password"
+                value={sifre}
+                required
+                onChange={sifreDuzenle}
+              />
+            </div>
 
-                <div>
-                  <label>Şifre</label>
-                  <input
-                  name="password" 
-                  type="password"
-                  value={sifre}
-                  required
-                  onChange={sifreDuzenle}
-                  ></input>
+            <div>
+              <label>Şifre Tekrar</label>
+              <Input
+                name="confirmPassword"
+                type="password"
+                value={sifreDogrula}
+                required
+                onChange={sifreDogrulaDuzenle}
+              />
+            </div>
 
-                <div>
-                  <label>Şifre Tekrar</label>
-                  <input
-                  name="confirmPassword"
-                  type="password"
-                  value={sifreDogrula}
-                  required
-                  onChange={sifreDogrulaDuzenle}
-                  ></input>
-                </div>
+            <div style={{ marginTop: '20px' }}>
+            <Button onClick={kayitForm} type="primary">Kayıt Ol</Button>
+            <Button onClick={panelDegis}>Kapat</Button>
+            </div>
+          </div>
+        )}
+      </Modal>
 
-                </div>
-
-                <button onClick={kayitForm}>Kayıt Ol</button>
-                <button onClick={panelDegis}>Kapat</button>
-              </div>
-            )}
-
-      </div>
-      )}
-
-
-      {panelGoster && (    // Panel kapandığında yok olması
-        <div style={{ position: "fixed", top: 0, left: 0, right: 0, bottom: 0, backgroundColor: "rgba(0,0,0,0.5)", zIndex: 999 }} onClick={panelDegis}></div>
-      )}
     </div>
   );
 }
 
 export default Giris;
-//   return (
-//     <div>
-//       <Modal
-//         visible={panelGoster}
-//         // onCancel={panelDegis}
-//         footer={null}
-//         centered
-//       >
-//         {girisEkrani ? (
-//           <div>
-//             <div>
-//               <label>Kullanıcı Adı</label>
-//               <Input
-//                 name="firstName"
-//                 type="text"
-//                 value={id}
-//                 required
-//                 onChange={idDuzenle}
-//               />
-//             </div>
-
-//             <div>
-//               <label>Şifre</label>
-//               <Input
-//                 name="password"
-//                 type="password"
-//                 value={sifre}
-//                 required
-//                 onChange={sifreDuzenle}
-//               />
-//             </div>
-
-//             <Button onClick={girisForm} type="primary">Giriş Yap</Button>
-//             <Button onClick={girisDegis}>Kayıt Ol</Button>
-//           </div>
-//         ) : (
-//           <div>
-//             <div>
-//               <label>Kullanıcı Adı</label>
-//               <Input
-//                 name="firstName"
-//                 type="text"
-//                 value={id}
-//                 required
-//                 onChange={idDuzenle}
-//               />
-//             </div>
-
-//             <div>
-//               <label>Şifre</label>
-//               <Input
-//                 name="password"
-//                 type="password"
-//                 value={sifre}
-//                 required
-//                 onChange={sifreDuzenle}
-//               />
-//             </div>
-
-//             <div>
-//               <label>Şifre Tekrar</label>
-//               <Input
-//                 name="confirmPassword"
-//                 type="password"
-//                 value={sifreDogrula}
-//                 required
-//                 onChange={sifreDogrulaDuzenle}
-//               />
-//             </div>
-
-//             <Button onClick={kayitForm} type="primary">Kayıt Ol</Button>
-//             <Button onClick={panelDegis}>Kapat</Button>
-//           </div>
-//         )}
-//       </Modal>
-
-//       {/* {panelGoster && (
-//         <div style={{ position: "fixed", top: 0, left: 0, right: 0, bottom: 0, backgroundColor: "rgba(0,0,0,0.5)", zIndex: 999 }}></div>
-//       )} */}
-//     </div>
-//   );
-// }
-
-// export default Giris;
