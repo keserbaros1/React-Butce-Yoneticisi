@@ -58,7 +58,7 @@ function IslemForm({IslenenVeriKayit}) {
       id: Math.random().toString(),
     };
     
-    IslenenVeriKayit(islenenVeri);   // parent component'e data gönderir
+    IslenenVeriKayit(islenenVeri);   
 
     // girilenBaslikAyarla("");    // inputları temizler
     // girilenFiyatAyarla("");  
