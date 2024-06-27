@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import "./App.css";
 
 import Yenikayit from "./components/Yenikayit";
-import Giris from "./components/Giris";
+import Giris from "./components/Giris/Giris";
 import VeriHareketleri from './components/VeriHareketleri';
 
 
@@ -58,13 +58,27 @@ function App() {
 
 const [yeniListe, yeniListeAyarla] = useState(testListe);
 
+// const Veri = (veri) => {
+//   yeniListeAyarla((eskiListe) => {
+//     const yeniVeri = [veri];
+//     return [...yeniVeri, eskiListe];
+//   });
+// };
+
 const Veri = (veri) => {
+  const dolanVeri = {
+    ...veri,
+  };
+
   yeniListeAyarla((eskiListe) => {
-    const yeniVeri = [veri];
-    return [...yeniVeri, eskiListe];
+    return [dolanVeri, ...eskiListe];
   });
-};
-console.log(yeniListe)
+  };
+
+
+
+
+console.log(testListe[0].date.getFullYear().toString())
 
 
   return (
@@ -79,7 +93,7 @@ console.log(yeniListe)
       </div> 
 
       <div>
-        <VeriHareketleri props={yeniListe}></VeriHareketleri>
+        <VeriHareketleri items={yeniListe}></VeriHareketleri>
       </div>
 
 
