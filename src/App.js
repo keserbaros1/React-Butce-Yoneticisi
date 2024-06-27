@@ -1,10 +1,10 @@
 import React, {useState} from "react";
 import "./App.css";
 
-import Yenikayit from "./components/Yenikayit";
+import Yenikayit from "./components/VeriGiris/Yenikayit";
 import Giris from "./components/Giris/Giris";
 import VeriHareketleri from './components/VeriHareketleri';
-
+import {Card} from "antd";
 
 function App() {
 
@@ -12,45 +12,9 @@ function App() {
   const testListe = [
     {
       id: "e1",
-      title: "New Phone",
+      title: "Deneme",
       amount: 99.67,
       date: new Date(2024, 1, 1),
-      id: Math.random().toString(),
-    },
-    {
-      id: "e2",
-      title: "Car Insurance",
-      amount: 294.67,
-      date: new Date(2024, 1, 1),
-      id: Math.random().toString(),
-    },
-    {
-      id: "e3",
-      title: "Toilet Paper",
-      amount: 80.0,
-      date: new Date(2024, 5, 6),
-      id: Math.random().toString(),
-    },
-    {
-      id: "e4",
-      title: "Desk (Wooden)",
-      amount: 120.67,
-      date: new Date(2024, 3, 3),
-      id: Math.random().toString(),
-    },
-    {
-      id: "e5",
-      title: "Udemy Course",
-      amount: 9.9,
-      date: new Date(2024, 4, 4),
-      id: Math.random().toString(),
-    },
-    {
-      id: "e6",
-      title: "Book",
-      amount: 29.9,
-      date: new Date(2024, 4, 4),
-      id: Math.random().toString(),
     },
   ];
 
@@ -66,38 +30,37 @@ const [yeniListe, yeniListeAyarla] = useState(testListe);
 // };
 
 const Veri = (veri) => {
-  const dolanVeri = {
+  const yeniVeri = {
     ...veri,
   };
-
+  
   yeniListeAyarla((eskiListe) => {
-    return [dolanVeri, ...eskiListe];
+    return [yeniVeri, ...eskiListe];
   });
-  };
+};
+
+console.log(yeniListe);
+console.log(yeniListe.date);
 
 
-
-
-console.log(testListe[0].date.getFullYear().toString())
 
 
   return (
-    <div>
-      <div>
+    <Card>
+      <Card>
         <Giris/>
-      </div>
+      </Card>
 
-
-      <div>
+      <Card>
         <Yenikayit IslenenVeriKayit={Veri}/>
-      </div> 
+      </Card> 
 
-      <div>
+      <Card>
         <VeriHareketleri items={yeniListe}></VeriHareketleri>
-      </div>
+      </Card>
 
 
-    </div>
+    </Card>
   );
   
 }
