@@ -1,10 +1,8 @@
 import React, { useState } from "react";
-import Card from "../UI/Card";
-
 
 import FiltreSecenekleri from "./FiltreSecenekleri";
-import KayitListesi from "./HesapKayitlari/KayitListesi";
 import Istatistik from "./Istatistik";
+import KayitListesi from "./HesapKayitlari/KayitListesi";
 
 function VeriHareketleri(props) {
 
@@ -23,14 +21,14 @@ const suanTarih = new Date().getFullYear();
   });
 
   return (
-    <Card className="expenses">
+    <div className="expenses">
       {/* <FiltreSecenekleri
         secim={secilenYil}
         filtre={filtreDegistir}
       ></FiltreSecenekleri> */}
       {/* <Istatistik expenses={filtrelenmisListe} /> */}
       <KayitListesi items={filtrelenmisListe} />
-    </Card>
+    </div>
 
   );
 }

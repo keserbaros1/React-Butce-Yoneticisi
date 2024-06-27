@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import {Table, Tag, Card, Input } from "antd";
+import {Table, Tag, Input } from "antd";
 import RaporGoner from "./RaporGoner"; 
 import moment from "moment";
 
@@ -85,7 +85,7 @@ const KayitListesi = (props) => {
       
   
       return(
-      <Card>
+      <div>
         <RaporGoner/>
         <Input.Search 
         placeholder=""
@@ -98,7 +98,7 @@ const KayitListesi = (props) => {
     <Table dataSource={dataSource} columns={columns} pagination={false} />
     <div style={{ display: 'flex', justifyContent: 'space-around' }}>
     </div> 
-   </Card>
+   </div>
     );
 
 };
