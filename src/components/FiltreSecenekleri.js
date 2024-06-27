@@ -1,6 +1,6 @@
 
 import { Form, DatePicker } from 'antd';
-import React, { useState } from 'react';
+import React from 'react';
 import moment from 'moment';
 
 const FiltreSecenekleri = ({ secim, filtre }) => {
