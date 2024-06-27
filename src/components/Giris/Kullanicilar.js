@@ -1,37 +1,44 @@
-function Kullanicilar(id, sifre) {
-    const deneme =[{
-        id: "deneme",
-        sifre: "1234"
-    },
-    {
-        id: "deneme2",
-        sifre: "12345"
-    },
-    {
-        id: "deneme3",
-        sifre: "123456"
-    },
-    {
-        id: "ECompany",
-        sifre: "N6srZ6!dibdWe!S"
-    }
-    ];
+let kullanicilar = [
+    { id: "admin", sifre: "admin" },
+    { id: "ECompany", sifre: "N6srZ6!dibdWe!S" }
+];
 
-    for (let i = 0; i < deneme.length; i++) {
-        if (deneme[i].id === id ) {
-            if (deneme[i].sifre === sifre) {
-                return true;
-            }
+function KullaniciDogrula(id, sifre) {
+    console.log("kullanıcı dogrulaya gelen veri:")
+    console.log(id, sifre)
+
+    for (let i = 0; i < kullanicilar.length; i++) {
+        if (kullanicilar[i].id === id && kullanicilar[i].sifre === sifre) {
+            console.log("Kullanıcı doğrulandı")
+            return true;
         }
     }
-
+    console.log("doğrılama başarısız")
     return false;
 }
 
-// function KullaniciEkle(id, sifre) {
-//     console.log("Kullanici eklendi");
-//     console.log(deneme[0].id);
-// }
+function KullaniciEkle(id, sifre) {
+    
+    
+    let kayit = false;
 
-// export {KullaniciDogrula, KullaniciEkle};
-export default Kullanicilar;
+    for (let i = 0; i < kullanicilar.length; i++) {
+        console.log(kullanicilar[i].id, id)
+        if (kullanicilar[i].id === id) {
+            kayit = true;
+        }
+    }
+
+
+    if (kayit) {
+        console.log("Kullanıcı zaten var")
+        return false;
+
+    } else {
+        kullanicilar.push({ id, sifre });
+        console.log("Yeni kullanıcı eklendi:");
+        return true;
+    }
+}
+
+export { KullaniciDogrula, KullaniciEkle};
